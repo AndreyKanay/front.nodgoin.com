@@ -1,0 +1,38 @@
+.clicker {
+    position: relative;
+    perspective: 1200px;
+}
+
+.clicker_is_disabled {
+    filter: grayscale(100);
+}
+
+.clicker__button {
+    height: 340px;
+    width: 340px;
+    transition: .1s;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-text-stroke: 1.3px #000;
+}
+
+.clicker__numbers {
+    top: 0;
+    z-index: 99;
+    width: 100%;
+    position: absolute;
+}
+
+.clicker__number {
+    top: 0;
+    left: 0;
+    position: absolute;
+    font-size: 46px;
+    font-weight: bold;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-text-stroke: 1.3px #000;
+}

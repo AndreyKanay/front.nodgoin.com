@@ -1,0 +1,39 @@
+.menu {
+    background-image: url("../../assets/menu.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    height: 66px;
+    width: 366px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+
+.menu__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 1;
+    text-align: center;
+    color: #000000;
+    -webkit-text-stroke: 1px #000000;
+    text-decoration: none;
+}
+
+.menu__label {
+
+}
+
+.menu__icon svg {
+    height: 32px;
+    width: 32px;
+}
+
+.vertical-drawer {
+    height: 100%;
+}

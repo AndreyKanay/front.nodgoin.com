@@ -1,0 +1,16 @@
+.avatar {
+    height: 48px;
+    width: 48px;
+    position: relative;
+
+}
+
+.avatar__inner {
+    background-color: #ce8bf2;
+    clip-path: url("#mask");
+}
+
+.avatar__border {
+    position: absolute;
+    top: 0;
+}
