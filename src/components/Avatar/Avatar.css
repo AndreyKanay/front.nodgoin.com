@@ -2,12 +2,15 @@
     height: 48px;
     width: 48px;
     position: relative;
-
+    overflow: hidden;
+    border-radius: 13px;
 }
 
 .avatar__inner {
     background-color: #ce8bf2;
     clip-path: url("#mask");
+    -webkit-clip-path: url(#mask);
+
 }
 
 .avatar__border {

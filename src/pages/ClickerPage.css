@@ -1,0 +1,3 @@
+body:has(.clicker-page) {
+    overflow: hidden !important;
+}

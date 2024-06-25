@@ -5,6 +5,9 @@ import "./Clicker.css"
 import {gameState} from "../../state/GameState.ts";
 import {AnimatePresence, motion} from "framer-motion";
 import {observer} from "mobx-react-lite";
+import {useHapticFeedback} from "@tma.js/sdk-react";
+
+// import {Haptics} from "@capacitor/haptics";
 
 interface NumberInfo {
     id: string
@@ -18,6 +21,7 @@ const numberAnimationDurationSec = numberAnimationDurationMs / 1000
 
 
 const Clicker: FC = observer(() => {
+    const hapticFeedback = useHapticFeedback()
     const coinRef = useRef<HTMLDivElement>(null)
     const [numbers, setNumbers] = useState<NumberInfo[]>([])
     const [buttonTransform, setButtonTransform] = useState({
@@ -25,7 +29,10 @@ const Clicker: FC = observer(() => {
         translateZ: 0,
         rotateX: 0,
         rotateY: 0,
-    })
+    });
+
+    const [tap, setTap] = useState(false)
+
 
     const onTouchHandler = () => {
         if (gameState.x !== 1) {
@@ -36,11 +43,16 @@ const Clicker: FC = observer(() => {
         }
     }
 
+
     const onTouchStartHandler = (event: any) => {
-        if (gameState.energy < gameState.tap) {
+        if (gameState.energy < gameState.tap || tap) {
             return
         }
         if (coinRef.current) {
+            hapticFeedback.impactOccurred("heavy")
+            if (event.touches.length > 1) {
+                return;
+            }
             const touch = event.touches[0]
             const rect = coinRef.current.getBoundingClientRect()
             const centerX = rect.left + rect.width / 2
@@ -51,13 +63,6 @@ const Clicker: FC = observer(() => {
 
             const rotateXValue = offsetY * 0.15
             const rotateYValue = offsetX * 0.15
-
-            setButtonTransform({
-                scale: 1,
-                translateZ: -5,
-                rotateX: rotateXValue,
-                rotateY: rotateYValue,
-            })
 
             const randomNumberBetweenTenAndMinusTen =
                 Math.floor(Math.random() * 21) - 10
@@ -78,20 +83,38 @@ const Clicker: FC = observer(() => {
             }, numberAnimationDurationMs)
 
             onTouchHandler()
+            setButtonTransform({
+                scale: 1,
+                translateZ: -5,
+                rotateX: rotateXValue,
+                rotateY: rotateYValue,
+            })
+            setTap(true)
         }
     }
 
+
     const onTouchEndHandler = () => {
+        if (gameState.energy < gameState.tap) {
+            return
+        }
+        setTap(false)
         setButtonTransform({
             scale: 1,
             translateZ: 0,
             rotateX: 0,
             rotateY: 0,
-        })
+        });
+
     }
 
     return (
-        <div className={`clicker ${gameState.energy < gameState.tap ? "clicker_is_disabled" : ""}`} ref={coinRef} onTouchStart={onTouchStartHandler} onTouchEnd={onTouchEndHandler}>
+        <div className={`clicker ${gameState.energy < gameState.tap ? "clicker_is_disabled" : ""}`} ref={coinRef}
+             onTouchStartCapture={onTouchStartHandler} onTouchEndCapture={onTouchEndHandler}
+             onTouchMoveCapture={(event) => {
+                 event.preventDefault();
+                 setTap(true);
+             }} draggable={false}>
             <motion.div className="clicker__numbers">
                 <AnimatePresence>
                     {numbers.map((number) => {

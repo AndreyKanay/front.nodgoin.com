@@ -8,6 +8,7 @@ import io from 'socket.io-client';
 import {initInitData, isTMA, useViewport} from "@tma.js/sdk-react";
 import {userService} from "./services/user.service.ts";
 import config from "./config.ts";
+import dateService from "./services/date.service.ts";
 
 const initialApp = async () => {
     const is_tma = await isTMA();
@@ -35,7 +36,6 @@ const initialApp = async () => {
     console.log(is_tma, initData.user.id)
 
     const user = await userService.getUser(initData.user.id)
-    console.log(user)
     userState.setUserId(user.id)
     userState.setFirstName(user.first_name)
     userState.setLastName(user.last_name)
@@ -50,16 +50,14 @@ const initialApp = async () => {
     gameState.set_tip_top_bot(user.tip_top_bot)
     gameState.set_full_energy_boost(user.full_energy_boost)
     gameState.set_turbo_boost(user.turbo)
-
-    const current_date = new Date();
+    const current_date = await dateService.getCurrentDate();
     const current_time = current_date.getTime();
     const user_end_session_time = userState.end_session.getTime();
     const elapsed_time = current_time - user_end_session_time;
-
     if (userState.last_visit.getDay() !== current_date.getDay()) {
         gameState.set_full_energy_boost(3)
         gameState.set_turbo_boost(3)
-        await userService.updateUserLastVisit(new Date())
+        await userService.updateUserLastVisit(await dateService.getCurrentDate())
     }
     if (gameState.tip_top_bot) {
         const coin_per_milliseconds = gameState.tap / 1000;
@@ -87,13 +85,12 @@ const initialApp = async () => {
 function App() {
     const viewPort = useViewport(false)
     useEffect(() => {
-        const Socket = io('/api', {
+        const Socket = io('https://nodgoin.com/api', {
             path: '/api/socket.io',
             transports: ['websocket'],
           });
         initialApp().then((res) => {
-            console.log(res);
-            
+
             Socket.emit("send_user_id", {
                 user_id: res
             })
@@ -101,11 +98,12 @@ function App() {
     }, [])
 
     useEffect(() => {
-        // viewPort?.expand()
+        viewPort?.expand();
     }, [viewPort]);
 
     return (
         <div className="container">
+
             <RouterProvider router={routes}/>
         </div>
     )

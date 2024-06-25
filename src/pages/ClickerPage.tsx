@@ -13,6 +13,7 @@ import {useBackButton} from "@tma.js/sdk-react";
 import {useNavigate} from "react-router-dom";
 const numberAnimationDurationMs = 6000
 const numberAnimationDurationSec = numberAnimationDurationMs / 1000
+import "./ClickerPage.css";
 const ClickerPage:FC = observer(
     () => {
         const [rocket] = useState({

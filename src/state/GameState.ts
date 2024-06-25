@@ -1,6 +1,7 @@
 import {action, computed, makeAutoObservable} from "mobx";
 import config from "../config.ts";
 import {userService} from "../services/user.service.ts";
+import {getRandomInt} from "../helpers/getRandomInt.ts";
 
 class GameState {
     private _balance: number = 0;
@@ -28,6 +29,9 @@ class GameState {
 
     constructor() {
         makeAutoObservable(this)
+        setInterval(() => {
+            this.setIsRocket(true);
+        }, [10000, 15000, 20000, 25000, 30000, 32500, 35000, 37500, 40000, 45000, 50000][getRandomInt(0, 10)])
     }
 
     @computed
