@@ -31,7 +31,7 @@ class GameState {
         makeAutoObservable(this)
         setInterval(() => {
             this.setIsRocket(true);
-        }, [10000, 15000, 20000, 25000, 30000, 32500, 35000, 37500, 40000, 45000, 50000][getRandomInt(0, 10)])
+        }, [20000, 20000, 20000, 25000, 30000, 32500, 35000, 37500, 40000, 45000, 50000][getRandomInt(0, 10)])
     }
 
     @computed

@@ -3,7 +3,7 @@ import {userState} from "../state/UserState.ts";
 
 class TaskService extends BaseService {
     async getTasks() {
-        const tasks = await this.axios.get(`/v1/earn?user_id${userState.user_id}`);
+        const tasks = await this.axios.get(`/v1/earn?user_id=${userState.user_id}`);
         return tasks.data;
     }
     async completeTask(task_id: string) {

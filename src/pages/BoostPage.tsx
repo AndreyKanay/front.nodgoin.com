@@ -145,7 +145,9 @@ const BoostPage = observer(
                                 return
                             }
                             setMultitabModal(true)
-                        }} className={`boosters__item ${gameState.multi_tap_lvl >= boosters[0].maxLevel || gameState.balance < gameState.multitap_price ? 'boosters__item_is_disable' : ''}`} role="button">
+                        }}
+                             className={`boosters__item ${gameState.multi_tap_lvl >= boosters[0].maxLevel || gameState.balance < gameState.multitap_price ? 'boosters__item_is_disable' : ''}`}
+                             role="button">
                             <div className="boosters__icon">
                                 <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 34.25 52.47">
@@ -178,13 +180,20 @@ const BoostPage = observer(
                                 <div className="boosters__title">Multetab</div>
                                 <div>
                                     <div className="boosters__cost">
-                                        <TockensSvg/>
-                                        <div className="boosters__cost-value">
-                                            {gameState.multitap_price}
-                                        </div>
-                                        <div className="boosters__current-level">
-                                            - {gameState.multi_tap_lvl} lvl
-                                        </div>
+                                        {gameState.multi_tap_lvl >= boosters[0].maxLevel ? (
+                                            "max"
+                                        ) : (
+                                            <>
+                                                <TockensSvg/>
+                                                <div className="boosters__cost-value">
+                                                    {gameState.multitap_price}
+                                                </div>
+                                                <div className="boosters__current-level">
+                                                    - {gameState.multi_tap_lvl} lvl
+                                                </div>
+                                            </>
+                                        )}
+
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +204,9 @@ const BoostPage = observer(
                                 return
                             }
                             setSpeedModal(true)
-                        }} className={`boosters__item ${gameState.regeneration_speed_lvl >= boosters[1].maxLevel || gameState.balance < gameState.speed_price ? 'boosters__item_is_disable' : ''}`} role="button">
+                        }}
+                             className={`boosters__item ${gameState.regeneration_speed_lvl >= boosters[1].maxLevel || gameState.balance < gameState.speed_price ? 'boosters__item_is_disable' : ''}`}
+                             role="button">
                             <div className="boosters__icon">
                                 <svg className="energy__icon" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 34.9 51.65">
@@ -209,13 +220,20 @@ const BoostPage = observer(
                                 <div className="boosters__title">Rechorging speed</div>
                                 <div>
                                     <div className="boosters__cost">
-                                        <TockensSvg/>
-                                        <div className="boosters__cost-value">
-                                            {gameState.speed_price}
-                                        </div>
-                                        <div className="boosters__current-level">
-                                            - {gameState.regeneration_speed_lvl} lvl
-                                        </div>
+                                        {gameState.regeneration_speed_lvl >= boosters[1].maxLevel ? (
+                                            "max"
+                                        ) : (
+                                            <>
+                                                <TockensSvg/>
+                                                <div className="boosters__cost-value">
+                                                    {gameState.speed_price}
+                                                </div>
+                                                <div className="boosters__current-level">
+                                                    - {gameState.regeneration_speed_lvl} lvl
+                                                </div>
+                                            </>
+                                        )}
+
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +244,9 @@ const BoostPage = observer(
                                 return
                             }
                             setLimitModal(true)
-                        }}  className={`boosters__item ${gameState.energy_limit_lvl >= boosters[2].maxLevel || gameState.balance < gameState.limit_price ? 'boosters__item_is_disable' : ''}`} role="button">
+                        }}
+                             className={`boosters__item ${gameState.energy_limit_lvl >= boosters[2].maxLevel || gameState.balance < gameState.limit_price ? 'boosters__item_is_disable' : ''}`}
+                             role="button">
                             <div className="boosters__icon">
                                 <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 76.91 76.97">
@@ -263,13 +283,18 @@ const BoostPage = observer(
                                 <div className="boosters__title">Enorgy limit</div>
                                 <div>
                                     <div className="boosters__cost">
-                                        <TockensSvg/>
-                                        <div className="boosters__cost-value">
-                                            {gameState.limit_price}
-                                        </div>
-                                        <div className="boosters__current-level">
-                                            - {gameState.energy_limit_lvl} lvl
-                                        </div>
+                                        {gameState.energy_limit_lvl >= boosters[2].maxLevel ? "max" : (
+                                            <>
+                                                <TockensSvg/>
+                                                <div className="boosters__cost-value">
+                                                    {gameState.limit_price}
+                                                </div>
+                                                <div className="boosters__current-level">
+                                                    - {gameState.energy_limit_lvl} lvl
+                                                </div>
+                                            </>
+                                        )}
+
                                     </div>
                                 </div>
                             </div>
@@ -280,7 +305,9 @@ const BoostPage = observer(
                                 return
                             }
                             setBotModal(true)
-                        }} className={`boosters__item ${gameState.tip_top_bot || gameState.balance < 1000000 ? 'boosters__item_is_disable' : ''}`} role="button">
+                        }}
+                             className={`boosters__item ${gameState.tip_top_bot || gameState.balance < 1000000 ? 'boosters__item_is_disable' : ''}`}
+                             role="button">
                             <div className="boosters__icon">
                                 <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 43.72 52.77">
@@ -366,13 +393,20 @@ const BoostPage = observer(
                                 <div className="boosters__title">Tip-top bot</div>
                                 <div>
                                     <div className="boosters__cost">
-                                        <TockensSvg/>
-                                        <div className="boosters__cost-value">
-                                            {boosters[3].basePrice}
-                                        </div>
-                                        <div className="boosters__current-level">
-                                            - {gameState.tip_top_bot ? 1 : 0} / 1
-                                        </div>
+                                        {gameState.tip_top_bot ? (
+                                            "max"
+                                        ) : (
+                                            <>
+                                                <TockensSvg/>
+                                                <div className="boosters__cost-value">
+                                                    {boosters[3].basePrice}
+                                                </div>
+                                                <div className="boosters__current-level">
+                                                    - {gameState.tip_top_bot ? 1 : 0} / 1
+                                                </div>
+                                            </>
+                                        )}
+
                                     </div>
                                 </div>
                             </div>
@@ -596,7 +630,9 @@ const BoostPage = observer(
                         </svg>
                     </div>
                     <div className="modal__title">Tip-top bot</div>
-                    <div className="modal__desc">The robot <span style={{textDecoration: 'line-through'}}>faps</span> taps for you</div>
+                    <div className="modal__desc">The robot <span
+                        style={{textDecoration: 'line-through'}}>faps</span> taps for you
+                    </div>
                     <div className="modal__button" onClick={bot_handler}>Activate</div>
                 </div>
             </div>

@@ -50,9 +50,7 @@ const Clicker: FC = observer(() => {
         }
         if (coinRef.current) {
             hapticFeedback.impactOccurred("heavy")
-            if (event.touches.length > 1) {
-                return;
-            }
+
             const touch = event.touches[0]
             const rect = coinRef.current.getBoundingClientRect()
             const centerX = rect.left + rect.width / 2

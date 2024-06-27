@@ -31,7 +31,7 @@ const FrensPage = () => {
                     <div className="frens__title">Invote freans and get couns</div>
                     <div className="earn-page__button bt" onTouchStart={() => {
                         const  utils = initUtils()
-                        utils.openTelegramLink(`https://t.me/share/url?url=https://t.me/nodgoin_test_bot/?start=ref_${userState.user_id}&text=Huy frean help me mace monuy for lambuuu`)
+                        utils.openTelegramLink(`https://t.me/share/url?url=https://t.me/nodgoin_bot/?start=ref_${userState.user_id}&text=Huy frean help me mace monuy for lambuuu`)
                     }}>
                         <svg viewBox="0 0 286.4 79">
                             <path className="cls-1"

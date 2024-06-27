@@ -119,7 +119,7 @@ const RatingPage = () => {
                             </div>
                             <div className="user-area__share" onClick={() => {
                                 const  utils = initUtils()
-                                utils.openTelegramLink(`https://t.me/share/url?url=https://t.me/nodgoin_test_bot/?start=squad_${mySquad.id}&text=Huy frean, join my squad`)
+                                utils.openTelegramLink(`https://t.me/share/url?url=https://t.me/nodgoin_bot/?start=squad_${mySquad.id}&text=Huy frean, join my squad`)
                             }}>
                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20"
                                      viewBox="0 0 50 50">

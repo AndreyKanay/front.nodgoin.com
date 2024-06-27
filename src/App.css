@@ -464,7 +464,14 @@
     display: flex;
     gap: 10px;
     align-items: center;
+    margin: 0 20px;
+    height: 70px;
     padding: 0 20px;
+    background-image: url("./assets/header-bg.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    color: #000000;
 }
 
 .task__content {
